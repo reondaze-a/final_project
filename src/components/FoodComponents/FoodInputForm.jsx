@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function FoodInputForm({ handleSubmit }) {
   const [form, setForm] = useState({
-    food: "",
+    name: "",
     price: "",
     unit: "lb",
   });
@@ -27,10 +27,10 @@ export default function FoodInputForm({ handleSubmit }) {
       <label>
         <input
           className="border-1 border-gray-300 rounded-l-lg p-2 w-full h-10"
-          name="food"
+          name="name"
           type="text"
           placeholder="Search food"
-          value={form.food}
+          value={form.name}
           onChange={handleChange}
         ></input>
       </label>
