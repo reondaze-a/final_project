@@ -54,9 +54,9 @@ export default function FoodInputForm({ handleSubmit }) {
           onChange={handleChange}
           value={form.unit}
         >
-          <option value="lb">lb</option>
-          <option value="oz">oz</option>
-          <option value="g">g</option>
+          <option value="lb">/ lb</option>
+          <option value="oz">/ oz</option>
+          <option value="g">/ g</option>
         </select>
       </label>
       <button
