@@ -1,7 +1,8 @@
 export default function Navigation() {
   return (
-    <nav className="">
-      <button className="cursor-pointer">Login / Signup</button>
+    <nav className="gap-4 flex">
+      <button className="cursor-pointer">Home</button>
+      <button className="cursor-pointer">Sign in</button>
     </nav>
   );
 }
