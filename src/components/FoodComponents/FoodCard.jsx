@@ -2,21 +2,18 @@ import { pricePerGram } from "../../utils/getNutrients";
 
 export default function FoodCard({
   name,
-  protein, // per 100g
   price,
   unit,
+  pricePer100g,
+  proteinPerDollar,
   onRemove
 }) {
-  const ppg = pricePerGram(price, unit);
-  const pricePer100g = ppg * 100;
-  const proteinPerDollar = protein / pricePer100g;
   
   return (
     <div className="flex flex-col max-w-sm w-full justify-between shadow-lg rounded-lg p-4 border border-gray-300">
       <h2 className="font-bold text-lg text-center">{name}</h2>
       <p className="font-semibold mb-2 text-center">
-        Price: ${price}/{unit} ({pricePer100g.toFixed(2)}$/100g)
-
+        Price: ${price}/{unit} ({pricePer100g}$/100g)
       </p>
       <p className="font-bold mb-4 text-center">
         {proteinPerDollar.toFixed(2)}g protein / $

@@ -12,6 +12,8 @@ export default function FoodList({ foods, onRemove }) {
           price={food.price}
           protein={food.protein}
           unit={food.unit}
+          pricePer100g={food.pricePer100g}
+          proteinPerDollar={food.proteinPerDollar}
           onRemove={() => onRemove(food.id)}
         />
       ))}

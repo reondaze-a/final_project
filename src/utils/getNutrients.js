@@ -4,14 +4,25 @@ export const getNutrients = (foodData, nutrient) => {
 }
 
 export const pricePerGram = (price, unit) => {
+  let result;
   switch (unit) {
     case "lb":
-      return price / 453.592;
+      result = (price / 453.592) * 100;
+      break;
     case "oz":
-      return price / 28.3495;
+      result = (price / 28.3495) * 100;
+      break;
     case "g":
-      return price;
+      result = price;
+      break;
     default:
       return NaN;
   }
+  return Number(result.toFixed(2));
+}
+
+export const proteinPerDollar = (protein, price, unit) => {
+  const ppg = pricePerGram(price, unit);
+  const proteinPerDollar = protein / ppg;
+  return Number(proteinPerDollar.toFixed(2));
 }

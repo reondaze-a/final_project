@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchFoodData } from "../services/foodApi.js";
-import { getNutrients } from "../utils/getNutrients.js";
+import { getNutrients, pricePerGram, proteinPerDollar } from "../utils/getNutrients.js";
 import { defaultFoodItems } from "../utils/defaultFoodItems.js";
 import FoodInputForm from "./FoodComponents/FoodInputForm"
 import FoodList from "./FoodComponents/FoodList"
@@ -35,7 +35,14 @@ export default function Main() {
       })
       .then((protein) => {
         setFoodList((prevList) => [
-          { name: form.name, price: parseFloat(form.price), protein: protein, id: crypto.randomUUID(), unit: form.unit },
+          { 
+            name: form.name, 
+            price: parseFloat(form.price), 
+            protein: protein, id: crypto.randomUUID(), 
+            unit: form.unit,
+            pricePer100g: pricePerGram(parseFloat(form.price), form.unit),
+            proteinPerDollar: proteinPerDollar(protein, parseFloat(form.price), form.unit) 
+          },
           ...prevList,
         ]);
       })
