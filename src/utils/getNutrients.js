@@ -3,7 +3,7 @@ export const getNutrients = (foodData, nutrient) => {
   return nutrientInfo ? nutrientInfo.value : 0;
 }
 
-export const pricePerGram = (price, unit) => {
+export const pricePer100Gram = (price, unit) => {
   let result;
   switch (unit) {
     case "lb":
@@ -22,7 +22,7 @@ export const pricePerGram = (price, unit) => {
 }
 
 export const proteinPerDollar = (protein, price, unit) => {
-  const ppg = pricePerGram(price, unit);
+  const ppg = pricePer100Gram(price, unit);
   const proteinPerDollar = protein / ppg;
   return Number(proteinPerDollar.toFixed(2));
 }

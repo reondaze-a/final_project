@@ -1,6 +1,7 @@
-import { pricePerGram } from "../../utils/getNutrients";
+
 
 export default function FoodCard({
+  rank,
   name,
   price,
   unit,
@@ -10,7 +11,10 @@ export default function FoodCard({
 }) {
   
   return (
-    <div className="flex flex-col max-w-sm w-full justify-between shadow-lg rounded-lg p-4 border border-gray-300">
+    <div className="flex relative flex-col max-w-sm w-full justify-between shadow-lg rounded-lg p-4 border border-gray-300">
+      <p className="absolute top-2 left-3 text-sm">
+        #{rank}
+      </p>
       <h2 className="font-bold text-lg text-center">{name}</h2>
       <p className="font-semibold mb-2 text-center">
         Price: ${price}/{unit} ({pricePer100g}$/100g)

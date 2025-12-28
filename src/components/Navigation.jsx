@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 export default function Navigation() {
   return (
     <nav className="gap-4 flex">
-      <button className="cursor-pointer">Home</button>
-      <button className="cursor-pointer">Sign in</button>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
     </nav>
   );
 }

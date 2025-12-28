@@ -1,23 +1,30 @@
 import { useState, useEffect } from "react"
-import { fetchFoodData } from "../services/foodApi.js";
-import { getNutrients, pricePerGram, proteinPerDollar } from "../utils/getNutrients.js";
-import { defaultFoodItems } from "../utils/defaultFoodItems.js";
-import FoodInputForm from "./FoodComponents/FoodInputForm"
-import FoodList from "./FoodComponents/FoodList"
+import { fetchFoodData, selectFoodItem } from "../services/foodApi.js";
+import { getNutrients } from "../utils/getNutrients.js";
+import { defaultFoodItems, createFoodItem } from "../utils/defaultFoodItems.js";
+import Home from "./Home.jsx";
+import About from "./About.jsx";
+import { Routes, Route } from "react-router-dom";
 
 export default function Main() {
   const [foodData, setFoodData] = useState(null);
   const [foodList, setFoodList] = useState(defaultFoodItems);
 
+  function capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  }
+  
+  const sortedFoodList = foodList.slice().sort((a, b) => b.proteinPerDollar - a.proteinPerDollar);
+
   const onRemove = (id) => {
     setFoodList((prevList) => prevList.filter((food) => food.id !== id));
   }
-  
+
   useEffect(() => {
     fetchFoodData("banana")
       .then((data) => {
         console.log("Fetched food data:", data);
-        setFoodData(data);
+        setFoodData(selectFoodItem(data));
       })
       .catch((error) => {
         console.error("Error fetching food data:", error);
@@ -28,47 +35,42 @@ export default function Main() {
     console.log("Form submitted with data:", form);
 
     fetchFoodData(form.name)
+      .then(data => selectFoodItem(data))
       .then(data => {
         const protein = getNutrients(data, "Protein"); // Extract protein content
-        console.log("Fetched food data:", protein);
+        console.log("Fetched food data:", data, "Protein:", protein);
         return protein;
       })
       .then((protein) => {
         setFoodList((prevList) => [
-          { 
-            name: form.name, 
-            price: parseFloat(form.price), 
-            protein: protein, id: crypto.randomUUID(), 
-            unit: form.unit,
-            pricePer100g: pricePerGram(parseFloat(form.price), form.unit),
-            proteinPerDollar: proteinPerDollar(protein, parseFloat(form.price), form.unit) 
-          },
-          ...prevList,
+          createFoodItem(
+            Date.now().toString(),
+            capitalizeFirstLetter(form.name),
+            parseFloat(form.price),
+            protein,
+            form.unit
+          ),
+          ...prevList
         ]);
       })
       .catch(error => {
         console.error("Error fetching food data:", error);
       });
-
-    
   };
 
   return (
     <main className="flex flex-col min-h-screen items-center mt-5 p-3 mb-10">
-      <h2 className="font-bold">Welcome to Protein Per Dollar</h2>
-      <p>Your go-to app for maximizing protein on a budget!</p>
-      <div className="flex max-w-md text-center text-sm my-7">
-        <p className="italic">
-          Note: Protein values are sourced from USDA FoodData Central. Values
-          may be based on either per 100g or per serving, depending on the food
-          record. Prices are normalized to $/100g for comparison. Results are
-          intended for relative comparison, not precise nutrition tracking.
-        </p>
-      </div>
-
-      <FoodInputForm handleSubmit={handleSubmit} />
-      <div className="divide my-10"></div>
-      <FoodList foods={foodList} foodData={foodData} onRemove={onRemove} />
+      <Routes>
+        <Route path="/" element={
+          <Home 
+            handleSubmit={handleSubmit} 
+            sortedFoodList={sortedFoodList} 
+            onRemove={onRemove} 
+            foodData={foodData} 
+          />
+        }/>
+        <Route path="/about" element={<About />} />
+      </Routes>
     </main>
   );
 }
