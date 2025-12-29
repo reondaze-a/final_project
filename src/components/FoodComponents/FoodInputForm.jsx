@@ -49,7 +49,7 @@ export default function FoodInputForm({ handleSubmit }) {
       </label>
       <label>
         <select
-          className="border-1 border-gray-300 rounded-r-lg p-1 w-full h-10 shrink-0 min-w-[50px]"
+          className="border-1 border-gray-300 rounded-r-lg w-full h-10 shrink-0 min-w-[50px]"
           name="unit"
           onChange={handleChange}
           value={form.unit}

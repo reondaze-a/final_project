@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="flex flex-col text-center max-w-full mx-auto p-6">
+    <div className="flex flex-col text-center max-w-lg p-6">
       <div className="flex flex-col">
         <h2 className="text-2xl font-bold mb-4">About Protein per Dollar</h2>
         <p className="mb-4">
@@ -45,7 +45,7 @@ export default function About() {
       </div>
       <div>
         <h3 className="text-xl font-bold mb-2 self-center mt-4">Data Source</h3>
-        <p>
+        <p className="text-left">
           Nutrition data is sourced from the
           <a
             href="https://fdc.nal.usda.gov/"
@@ -61,7 +61,7 @@ export default function About() {
       </div>
       <div className="flex flex-col">
         <h3 className="text-xl font-bold mb-2 self-center mt-4">Assumptions & Limitations</h3>
-        <ul className="list-disc">
+        <ul className="list-disc text-left">
           <li>Protein values from USDA may be reported per 100g or per serving, depending on the food record and dataset type.</li>
           <li>Prices are manually entereted by the user and may vary by store, brand, or location.</li>
           <li>The app is intended for relative comparison, not precise dietary planning or medical use.</li>

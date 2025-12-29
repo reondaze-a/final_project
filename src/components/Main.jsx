@@ -7,7 +7,6 @@ import About from "./About.jsx";
 import { Routes, Route } from "react-router-dom";
 
 export default function Main() {
-  const [foodData, setFoodData] = useState(null);
   const [foodList, setFoodList] = useState(defaultFoodItems);
 
   function capitalizeFirstLetter(val) {
@@ -18,19 +17,8 @@ export default function Main() {
 
   const onRemove = (id) => {
     setFoodList((prevList) => prevList.filter((food) => food.id !== id));
-  }
-
-  useEffect(() => {
-    fetchFoodData("banana")
-      .then((data) => {
-        console.log("Fetched food data:", data);
-        setFoodData(selectFoodItem(data));
-      })
-      .catch((error) => {
-        console.error("Error fetching food data:", error);
-      });
-  }, []); // to show example food data on initial load
-
+  };
+  
   const handleSubmit = (form) => {
     console.log("Form submitted with data:", form);
 
@@ -59,14 +47,13 @@ export default function Main() {
   };
 
   return (
-    <main className="flex flex-col min-h-screen items-center mt-5 p-3 mb-10">
+    <main className="flex flex-col min-h-screen items-center mt-5 p-3 pb-10">
       <Routes>
         <Route path="/" element={
           <Home 
             handleSubmit={handleSubmit} 
             sortedFoodList={sortedFoodList} 
             onRemove={onRemove} 
-            foodData={foodData} 
           />
         }/>
         <Route path="/about" element={<About />} />
