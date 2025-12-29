@@ -11,7 +11,7 @@ export default function FoodCard({
 }) {
   
   return (
-    <div className="flex relative flex-col max-w-sm w-full justify-between shadow-lg rounded-lg p-4 border border-gray-300">
+    <div className="flex relative flex-col max-w-sm w-full justify-between shadow-lg rounded-lg p-4 border border-gray-300 animate-fade-in">
       <p className="absolute top-2 left-3 text-sm">
         #{rank}
       </p>
