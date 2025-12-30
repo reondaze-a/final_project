@@ -49,7 +49,7 @@ export default function FoodInputForm({ handleSubmit }) {
       </label>
       <label>
         <select
-          className="border-1 border-gray-300 rounded-r-lg w-full h-10 shrink-0 min-w-[50px]"
+          className="border border-gray-300 rounded-r-lg w-full h-10 shrink-0 min-w-12.5"
           name="unit"
           onChange={handleChange}
           value={form.unit}
@@ -60,7 +60,7 @@ export default function FoodInputForm({ handleSubmit }) {
         </select>
       </label>
       <button
-        className="bg-orange-500 text-white rounded-lg p-2 h-10 px-4 hover:bg-orange-600 hover:cursor-pointer ml-1"
+        className="bg-orange-500 text-white rounded-lg p-2 h-10 px-4 hover:bg-orange-600 hover:cursor-pointer transition-color duration-150 ml-1"
         type="submit"
       >
         Add

@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="flex flex-col text-center max-w-lg p-6">
+    <div className="flex flex-col text-center max-w-lg p-6 animate-slide-in">
       <div className="flex flex-col">
         <h2 className="text-2xl font-bold mb-4">About Protein per Dollar</h2>
         <p className="mb-4">
@@ -61,7 +61,7 @@ export default function About() {
       </div>
       <div className="flex flex-col">
         <h3 className="text-xl font-bold mb-2 self-center mt-4">Assumptions & Limitations</h3>
-        <ul className="list-disc text-left">
+        <ul className="list-disc text-left space-y-1">
           <li>Protein values from USDA may be reported per 100g or per serving, depending on the food record and dataset type.</li>
           <li>Prices are manually entereted by the user and may vary by store, brand, or location.</li>
           <li>The app is intended for relative comparison, not precise dietary planning or medical use.</li>
@@ -70,7 +70,10 @@ export default function About() {
       <div className="flex flex-col">
         <h3 className="text-xl font-bold mb-2 self-center mt-4">About the Author</h3>
         <p>
-          This project was created by Abraham Efraim, a software developer.
+          I am a frontend-focused developer with a strong interest in building practical, 
+          data-driven web applications that solve real-world problems. 
+          I enjoy working on projects that combine user-friendly interfaces with clear logic, 
+          calculations, and external data sources.
         </p>
       </div>
     </div>

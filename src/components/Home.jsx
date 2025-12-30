@@ -3,7 +3,7 @@ import FoodList from "./FoodComponents/FoodList"
 
 export default function Home({ handleSubmit, sortedFoodList, onRemove }) {
   return (
-    <>
+    <div className="flex flex-col items-center w-full animate-slide-in-right">
       <h2 className="font-bold text-center">Welcome to Protein Per Dollar</h2>
       <p className="text-center">Your go-to app for maximizing protein on a budget!</p>
       <div className="flex flex-col max-w-lg text-center text-sm mt-7 mb-15">
@@ -22,6 +22,6 @@ export default function Home({ handleSubmit, sortedFoodList, onRemove }) {
           onRemove={onRemove}
         />
       </div>
-    </>
+    </div>
   );
 }

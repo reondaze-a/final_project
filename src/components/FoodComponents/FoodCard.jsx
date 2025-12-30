@@ -11,7 +11,7 @@ export default function FoodCard({
 }) {
   
   return (
-    <div className="flex relative flex-col max-w-sm w-full justify-between shadow-lg rounded-lg p-4 border border-gray-300 animate-fade-in">
+    <div className="flex relative flex-col w-53 h-46.5 box-border justify-between shadow-lg rounded-lg p-4 border border-gray-300 animate-fade-in">
       <p className="absolute top-2 left-3 text-sm">
         #{rank}
       </p>
@@ -22,12 +22,9 @@ export default function FoodCard({
       <p className="font-bold mb-4 text-center">
         {proteinPerDollar.toFixed(2)}g protein / $
       </p>
-      <div className="flex text-center gap-2 text-sm">
-        <button className="bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors w-full">
-          Add to Favorites
-        </button>
+      <div className="flex text-center">
         <button
-          className="bg-orange-500 text-white rounded hover:bg-orange-600 transition-colors w-full"
+          className="bg-orange-500 cursor-pointer text-white rounded hover:bg-orange-600 transition-colors duration-150 w-full h-full"
           onClick={onRemove}
         >
           Remove
