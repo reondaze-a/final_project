@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 
 export default function Main() {
   const [foodList, setFoodList] = useState(defaultFoodItems);
+  const [isLoading, setIsLoading] = useState(false);
 
   function capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
@@ -21,6 +22,7 @@ export default function Main() {
   
   const handleSubmit = (form) => {
     console.log("Form submitted with data:", form);
+    setIsLoading(true);
 
     fetchFoodData(form.name)
       .then(data => selectFoodItem(data))
@@ -41,6 +43,9 @@ export default function Main() {
           ...prevList
         ]);
       })
+      .then(() => {
+        setIsLoading(false);
+      })
       .catch(error => {
         console.error("Error fetching food data:", error);
       });
@@ -53,7 +58,8 @@ export default function Main() {
           <Home 
             handleSubmit={handleSubmit} 
             sortedFoodList={sortedFoodList} 
-            onRemove={onRemove} 
+            onRemove={onRemove}
+            isLoading={isLoading} 
           />
         }/>
         <Route path="/about" element={<About />} />

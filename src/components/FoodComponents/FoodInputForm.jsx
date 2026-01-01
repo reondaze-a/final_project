@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function FoodInputForm({ handleSubmit }) {
+export default function FoodInputForm({ handleSubmit, isLoading }) {
   const [form, setForm] = useState({
     name: "",
     price: "",
@@ -60,10 +60,20 @@ export default function FoodInputForm({ handleSubmit }) {
         </select>
       </label>
       <button
-        className="bg-orange-500 text-white rounded-lg p-2 h-10 px-4 hover:bg-orange-600 hover:cursor-pointer transition-color duration-150 ml-1"
+        className={`
+            ${
+              isLoading
+                ? "cursor-not-allowed bg-gray-500 opacity-70"
+                : "bg-orange-500 hover:bg-orange-600"
+            }
+            text-white 
+            rounded-lg p-2 h-10 px-4 
+            hover:cursor-pointer transition-color duration-150 ml-1 
+          `}
         type="submit"
+        disabled={isLoading}
       >
-        Add
+        {isLoading ? "Adding..." : "Add"}
       </button>
     </form>
   );

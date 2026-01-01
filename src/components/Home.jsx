@@ -1,7 +1,7 @@
 import FoodInputForm from "./FoodComponents/FoodInputForm"
 import FoodList from "./FoodComponents/FoodList"
 
-export default function Home({ handleSubmit, sortedFoodList, onRemove }) {
+export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading }) {
   return (
     <div className="flex flex-col items-center w-full animate-slide-in-right">
       <h2 className="font-bold text-center">Welcome to Protein Per Dollar</h2>
@@ -13,7 +13,7 @@ export default function Home({ handleSubmit, sortedFoodList, onRemove }) {
           record. Prices are normalized to $/100g for comparison. Results are
           intended for relative comparison, not precise nutrition tracking.
         </p>
-        <FoodInputForm handleSubmit={handleSubmit} />
+        <FoodInputForm handleSubmit={handleSubmit} isLoading={isLoading} />
       </div>
 
       <div className="flex flex-col align-center">
