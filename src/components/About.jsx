@@ -70,9 +70,9 @@ export default function About() {
       <div className="flex flex-col">
         <h3 className="text-xl font-bold mb-2 self-center mt-4">About the Author</h3>
         <p>
-          I am a frontend-focused developer with a strong interest in building practical, 
+          Abraham Efraim, a frontend-focused developer with a strong interest in building practical, 
           data-driven web applications that solve real-world problems. 
-          I enjoy working on projects that combine user-friendly interfaces with clear logic, 
+          He enjoys working on projects that combine user-friendly interfaces with clear logic, 
           calculations, and external data sources.
         </p>
       </div>

@@ -10,6 +10,7 @@ export default function FoodList({ foods, onRemove }) {
           key={food.id}
           id={food.id}
           name={food.name}
+          query={food.query}
           price={food.price}
           protein={food.protein}
           unit={food.unit}

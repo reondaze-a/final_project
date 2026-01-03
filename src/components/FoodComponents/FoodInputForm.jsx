@@ -28,7 +28,7 @@ export default function FoodInputForm({ handleSubmit, isLoading }) {
     >
       <label>
         <input
-          className="border-1 border-gray-300 rounded-l-lg p-2 w-full h-10"
+          className="border border-gray-300 rounded-l-lg p-2 w-full h-10"
           name="name"
           type="text"
           placeholder="Search food"
@@ -41,10 +41,12 @@ export default function FoodInputForm({ handleSubmit, isLoading }) {
           $
         </span>
         <input
-          className="border-1 border-gray-300 p-2 w-full pl-5 h-10"
+          className="border border-gray-300 p-2 w-full pl-5 h-10"
           name="price"
           type="number"
           placeholder="Enter price"
+          min="0"
+          step="0.01"
           value={form.price}
           onChange={handleChange}
         ></input>

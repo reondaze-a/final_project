@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import FoodInputForm from "./FoodComponents/FoodInputForm"
 import FoodList from "./FoodComponents/FoodList"
 
-export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading, isError }) {
+export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading, isError, errorText }) {
 
   return (
     <div className="flex flex-col items-center w-full animate-slide-in-right">
@@ -18,7 +17,7 @@ export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading
         <FoodInputForm handleSubmit={handleSubmit} isLoading={isLoading} />
         {isError && (
           <p className="text-red-500 text-sm mt-2">
-            Error: Please enter a valid food name and a positive price.
+            {`Error: ${errorText ? errorText : "An error occurred while fetching food data. Please try again."}`}
           </p>
         )}
       </div>

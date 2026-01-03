@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { fetchFoodData, selectFoodItem } from "../services/foodApi.js";
 import { getNutrients } from "../utils/getNutrients.js";
 import { defaultFoodItems, createFoodItem } from "../utils/defaultFoodItems.js";
@@ -10,15 +10,27 @@ export default function Main() {
   const [foodList, setFoodList] = useState(defaultFoodItems);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [errorText, setErrorText] = useState("");
+
 
   const validateForm = (form) => {
     const newErrors = {};
     if (!form.name.trim()) {
       newErrors.name = "Food name is required";
+      setErrorText("Food name is required");
     }
     if (!form.price || isNaN(form.price) || parseFloat(form.price) <= 0) {
       newErrors.price = "Price must be a positive number";
+      setErrorText("Price must be a positive number");
     }
+
+    if (form.name.trim().length < 2) {
+      newErrors.name = "Food name must be at least 2 characters long";
+      setErrorText("Food name must be at least 2 characters long");
+    }
+
+
+
     return Object.keys(newErrors).length === 0;
   };
 
@@ -34,32 +46,39 @@ export default function Main() {
   };
   
   const handleSubmit = (form) => {
-    console.log("Form submitted with data:", form);
     setIsLoading(true);
 
     if (!validateForm(form)) {
       setIsLoading(false);
       setIsError(true);
 
+
       setTimeout(() => {
         setIsError(false);
-      }, 3000);
+      }, 4000);
 
       return;
     }
 
     fetchFoodData(form.name)
-      .then(data => selectFoodItem(data))
+      .then(data => selectFoodItem(data, form.name))
       .then(data => {
+        
+        if (!data) {
+          const errText = "No suitable food item found, please try a different search term.";
+
+          setErrorText(errText);
+          throw new Error(errText);
+        }
         const protein = getNutrients(data, "Protein"); // Extract protein content
-        console.log("Fetched food data:", data, "Protein:", protein);
-        return protein;
+        return { protein, data };
       })
-      .then((protein) => {
+      .then(({ protein, data }) => {
         setFoodList((prevList) => [
-          createFoodItem(
+          createFoodItem( // Create new food item for the list
             Date.now().toString(),
-            capitalizeFirstLetter(form.name),
+            capitalizeFirstLetter(data.description),
+            form.name, // store original query  
             parseFloat(form.price),
             protein,
             form.unit
@@ -73,6 +92,14 @@ export default function Main() {
       })
       .catch(error => {
         console.error("Error fetching food data:", error);
+        setIsLoading(false);
+        setIsError(true);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setIsError(false);
+          setErrorText("");
+        }, 4000);
       });
   };
 
@@ -85,7 +112,8 @@ export default function Main() {
             sortedFoodList={sortedFoodList} 
             onRemove={onRemove}
             isLoading={isLoading}
-            isError={isError} 
+            isError={isError}
+            errorText={errorText} 
           />
         }/>
         <Route path="/about" element={<About />} />
