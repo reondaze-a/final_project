@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { fetchFoodData, selectFoodItem } from "../services/foodApi.js";
+import { fetchFoodData, selectFoodItem } from "../utils/foodDataCentralApi.js";
 import { getNutrients } from "../utils/getNutrients.js";
 import { defaultFoodItems, createFoodItem } from "../utils/defaultFoodItems.js";
 import Home from "./Home.jsx";
