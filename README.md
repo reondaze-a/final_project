@@ -48,5 +48,5 @@ and
 ## Author
 
 **Abraham Efraim**
-- Github: [https://github.com/reondaze-a]
-- LinkedIn: [linkedin.com/in/abraham-efraim/]
+- Github: [https://github.com/reondaze-a](reondaze-a)
+- LinkedIn: [https://linkedin.com/in/abraham-efraim/](Abraham Efraim)
