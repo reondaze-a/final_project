@@ -7,6 +7,8 @@ export default function FoodInputForm({ handleSubmit, isLoading }) {
     unit: "lb",
   });
 
+  
+
   // handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;

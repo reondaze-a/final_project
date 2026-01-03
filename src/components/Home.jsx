@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import FoodInputForm from "./FoodComponents/FoodInputForm"
 import FoodList from "./FoodComponents/FoodList"
 
-export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading }) {
+export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading, isError }) {
+
   return (
     <div className="flex flex-col items-center w-full animate-slide-in-right">
       <h2 className="font-bold text-center">Welcome to Protein Per Dollar</h2>
@@ -14,6 +16,11 @@ export default function Home({ handleSubmit, sortedFoodList, onRemove, isLoading
           intended for relative comparison, not precise nutrition tracking.
         </p>
         <FoodInputForm handleSubmit={handleSubmit} isLoading={isLoading} />
+        {isError && (
+          <p className="text-red-500 text-sm mt-2">
+            Error: Please enter a valid food name and a positive price.
+          </p>
+        )}
       </div>
 
       <div className="flex flex-col align-center">
