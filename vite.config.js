@@ -8,5 +8,5 @@ export default defineConfig({
   server: {
     port: 4500
   },
-  base: './',
+  base: '/final_project/',
 })
