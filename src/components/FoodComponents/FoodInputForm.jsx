@@ -25,6 +25,7 @@ export default function FoodInputForm({ handleSubmit, isLoading }) {
         e.preventDefault();
         handleSubmit(form);
       }}
+      noValidate
     >
       <label>
         <input

@@ -50,3 +50,7 @@ and
 **Abraham Efraim**
 - Github: [reondaze-a](https://github.com/reondaze-a)
 - LinkedIn: [Abraham Efraim](https://linkedin.com/in/abraham-efraim/)
+
+## Project Pitch
+
+Check out [this video](https://drive.google.com/file/d/1k9R7GaBp5eZVyCE6nIfuozrWpe0OlO6z/view?usp=drive_link), where I describe my project and some challenges I faced while building it.
